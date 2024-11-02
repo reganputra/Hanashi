@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Sutoriapuri</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="welcome_title">Sutoriapuri</string>
+    <string name="welcome_desc">Aplikasi untuk kalian bercerita</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="registrasi_acc">Registrasi akun dulu ya</string>
+    <string name="hint_email">Masukan Email</string>
+    <string name="hint_username">Masukan Username</string>
+    <string name="hint_password">Password</string>
+    <string name="login_title">Silahkan Login</string>
+</resources>
