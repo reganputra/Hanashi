@@ -1,4 +1,10 @@
 package com.example.sutoriapuri.data.response
 
-class ErrorResponse {
-}
+import com.google.gson.annotations.SerializedName
+
+data class ErrorResponse(
+    @field:SerializedName("error")
+    val error: Boolean? = null,
+    @field:SerializedName("message")
+    val message: String? = null
+)
