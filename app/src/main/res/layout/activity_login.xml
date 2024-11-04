@@ -41,10 +41,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewLogin">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.example.sutoriapuri.EmailCustomView
             android:id="@+id/ed_login_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:autofillHints="emailAddress"
+            android:inputType="textEmailAddress"
             android:hint="@string/hint_email" />
     </com.google.android.material.textfield.TextInputLayout>
 
