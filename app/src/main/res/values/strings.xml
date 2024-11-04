@@ -12,4 +12,5 @@
     <string name="hint_username">Masukan Username</string>
     <string name="hint_password">Password</string>
     <string name="login_title">Silahkan Login</string>
+    <string name="logout_menu">Logout</string>
 </resources>
