@@ -41,7 +41,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewLogin">
 
-        <com.example.sutoriapuri.EmailCustomView
+        <com.example.sutoriapuri.ui.customview.EmailCustomView
             android:id="@+id/ed_login_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayoutEmailLogin">
         
-        <com.example.sutoriapuri.ui.CustomView
+        <com.example.sutoriapuri.ui.customview.PasswordCustomView
             android:id="@+id/ed_login_password"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
