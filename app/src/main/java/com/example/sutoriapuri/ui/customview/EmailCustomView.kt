@@ -1,4 +1,4 @@
-package com.example.sutoriapuri
+package com.example.sutoriapuri.ui.customview
 
 import android.content.Context
 import android.text.Editable
