@@ -6,6 +6,7 @@ import com.example.sutoriapuri.data.response.RegisterResponse
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 
 interface ApiService {
@@ -26,6 +27,8 @@ interface ApiService {
 
 
     @GET("stories")
-    suspend fun getStories(): ListStoryResponse
+    suspend fun getStories(
+        @Header("Authorization") token: String
+    ): ListStoryResponse
 
 }

@@ -36,22 +36,8 @@
             android:textColor="@android:color/black"
             app:layout_constraintTop_toBottomOf="@id/iv_item_photo"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintMarginTop="8dp" />
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-        <!-- Subtitle Text -->
-        <TextView
-            android:id="@+id/tv_description"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/dicoding"
-            android:textSize="14sp"
-            android:textColor="@android:color/darker_gray"
-            app:layout_constraintTop_toBottomOf="@id/tv_item_name"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintMarginTop="4dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

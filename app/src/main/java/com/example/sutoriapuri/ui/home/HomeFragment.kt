@@ -6,37 +6,67 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.sutoriapuri.data.Result
+import com.example.sutoriapuri.data.ViewModelFactory
 import com.example.sutoriapuri.databinding.FragmentHomeBinding
+import com.example.sutoriapuri.ui.adapter.StoriesAdapter
 
 class HomeFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+   private lateinit var binding: FragmentHomeBinding
+   private val homeViewModel: HomeViewModel by viewModels {
+       ViewModelFactory.getInstance(requireContext())
+   }
+    private val storyAdapter = StoriesAdapter()
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        showLoading(false)
+        displayStories()
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+    }
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+    private fun displayStories(){
+        homeViewModel.getStories().observe(viewLifecycleOwner){result ->
+            when(result){
+                is Result.Loading -> showLoading(true)
+
+                is Result.Success -> {
+                    showLoading(false)
+                    storyAdapter.submitList(result.data)
+                }
+                is Result.Error -> {
+                    showLoading(false)
+                }
+            }
+
         }
-        return root
+        binding.rvListStories.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = storyAdapter
+        }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.pbHome.visibility = View.VISIBLE
+        } else {
+            binding.pbHome.visibility = View.GONE
+        }
     }
+
 }

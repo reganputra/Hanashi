@@ -27,7 +27,6 @@ class StoriesAdapter: ListAdapter<ListStoryItem, StoriesAdapter.ViewHolder>(DIFF
                 .load(item.photoUrl)
                 .into(view.ivItemPhoto)
             view.tvItemName.text = item.name
-            view.tvDescription.text = item.description
         }
 
     }
