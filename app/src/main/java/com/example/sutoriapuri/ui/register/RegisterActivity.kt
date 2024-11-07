@@ -29,7 +29,6 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         userRegistered()
-        showLoading(false)
     }
 
     private fun userRegistered(){
@@ -78,11 +77,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun showLoading(isLoading: Boolean) {
-        if (isLoading) {
-            binding.pbRegister.visibility = View.VISIBLE
-        } else {
-            binding.pbRegister.visibility = View.GONE
-        }
+        binding.pbRegister.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
 }

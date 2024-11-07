@@ -29,7 +29,6 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         userLogin()
-        showLoading(false)
     }
 
     private fun userLogin(){
@@ -79,10 +78,6 @@ class LoginActivity : AppCompatActivity() {
 
 
     private fun showLoading(isLoading: Boolean) {
-        if (isLoading) {
-            binding.pbLogin.visibility = View.VISIBLE
-        } else {
-            binding.pbLogin.visibility = View.GONE
-        }
+        binding.pbLogin.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 }

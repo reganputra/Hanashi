@@ -25,7 +25,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        showLoading(false)
+//        showLoading(false)
         displayStories()
     }
 
@@ -62,11 +62,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun showLoading(isLoading: Boolean) {
-        if (isLoading) {
-            binding.pbHome.visibility = View.VISIBLE
-        } else {
-            binding.pbHome.visibility = View.GONE
-        }
+        binding.pbHome.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
 }
