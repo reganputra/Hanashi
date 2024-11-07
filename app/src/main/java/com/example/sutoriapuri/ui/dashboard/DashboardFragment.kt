@@ -38,6 +38,12 @@ class DashboardFragment : Fragment() {
         showLoading(false)
         setupButton()
         setupUpload()
+
+
+        // Keep image while rotating phone
+        currentImage = savedInstanceState?.getParcelable("currentImage")
+        showImage()
+
     }
 
     override fun onCreateView(
@@ -48,6 +54,11 @@ class DashboardFragment : Fragment() {
         binding = FragmentDashboardBinding.inflate(inflater, container, false)
         return binding.root
 
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelable("currentImage", currentImage)
     }
 
     private fun startGallery() {
@@ -141,6 +152,7 @@ class DashboardFragment : Fragment() {
         }
 
     }
+
 
 
 
