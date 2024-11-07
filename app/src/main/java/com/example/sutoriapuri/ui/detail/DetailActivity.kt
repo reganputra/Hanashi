@@ -24,6 +24,7 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         getDetailStories()
+        showLoading(false)
     }
 
     private fun getDetailStories(){

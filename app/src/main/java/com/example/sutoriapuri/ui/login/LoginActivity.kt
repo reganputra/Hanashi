@@ -29,6 +29,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         userLogin()
+        showLoading(false)
     }
 
     private fun userLogin(){

@@ -29,6 +29,7 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         userRegistered()
+        showLoading(false)
     }
 
     private fun userRegistered(){
