@@ -15,4 +15,9 @@
     <string name="logout_menu">Logout</string>
     <string name="dicoding">Dicoding</string>
     <string name="judul">Judul</string>
+    <string name="description">Description</string>
+    <string name="gallery">Gallery</string>
+    <string name="camera">Camera</string>
+    <string name="gambar">Gambar</string>
+    <string name="upload">Upload</string>
 </resources>
