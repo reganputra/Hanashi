@@ -9,10 +9,13 @@ import com.example.sutoriapuri.data.response.ErrorResponse
 import com.example.sutoriapuri.data.response.ListStoryItem
 import com.example.sutoriapuri.data.response.LoginResponse
 import com.example.sutoriapuri.data.response.RegisterResponse
+import com.example.sutoriapuri.data.response.UploadStoryResponse
 import com.example.sutoriapuri.data.userpref.UserPreference
 import com.google.gson.Gson
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.HttpException
 
 class StoryRepository(
@@ -107,6 +110,26 @@ class StoryRepository(
             val errorMessage = errorBody.message
             emit(Result.Error(errorMessage.toString()))
         }
+    }
+
+    fun uploadStory(
+        file: MultipartBody.Part,
+        description: RequestBody): LiveData<Result<UploadStoryResponse>> = liveData {
+        emit(Result.Loading)
+        try {
+            val user = userPref.getSession().first()
+            val token = user.token
+            if (token.isNotEmpty()){
+                val response = apiService.uploadStory(file, description, "Bearer $token")
+                emit(Result.Success(response))
+            }
+        } catch (e: HttpException){
+            val jsonString = e.response()?.errorBody()?.string()
+            val errorBody = Gson().fromJson(jsonString, ErrorResponse::class.java)
+            val errorMessage = errorBody.message
+            emit(Result.Error(errorMessage.toString()))
+        }
+
     }
 
 
