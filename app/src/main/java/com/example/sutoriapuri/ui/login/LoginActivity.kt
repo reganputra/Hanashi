@@ -1,17 +1,15 @@
 package com.example.sutoriapuri.ui.login
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.sutoriapuri.MainActivity
-import com.example.sutoriapuri.R
 import com.example.sutoriapuri.data.Result
 import com.example.sutoriapuri.data.ViewModelFactory
 import com.example.sutoriapuri.databinding.ActivityLoginBinding
@@ -30,6 +28,7 @@ class LoginActivity : AppCompatActivity() {
 
         userLogin()
         showLoading(false)
+        playAnimation()
     }
 
     private fun userLogin(){
@@ -76,6 +75,28 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+
+    private fun playAnimation(){
+        ObjectAnimator.ofFloat(binding.imageViewLogin, View.TRANSLATION_X, -30f, 30f).apply {
+            duration = 6000
+            repeatCount = ObjectAnimator.INFINITE
+            repeatMode = ObjectAnimator.REVERSE
+        }.start()
+
+        val title = ObjectAnimator.ofFloat(binding.textViewLogin, View.ALPHA, 1f).setDuration(100)
+        val email = ObjectAnimator.ofFloat(binding.textInputLayoutEmailLogin, View.ALPHA, 1f).setDuration(100)
+        val password = ObjectAnimator.ofFloat(binding.textInputLayouPasswordLogin, View.ALPHA, 1f).setDuration(100)
+        val login = ObjectAnimator.ofFloat(binding.buttonLogin, View.ALPHA, 1f).setDuration(100)
+
+        AnimatorSet().apply {
+            playSequentially(
+                title,
+                email,
+                password,
+                login)
+            startDelay = 100
+        }.start()
+    }
 
 
     private fun showLoading(isLoading: Boolean) {

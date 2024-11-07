@@ -1,16 +1,14 @@
 package com.example.sutoriapuri.ui.register
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.sutoriapuri.R
 import com.example.sutoriapuri.data.Result
 import com.example.sutoriapuri.data.ViewModelFactory
 import com.example.sutoriapuri.databinding.ActivityRegisterBinding
@@ -30,6 +28,7 @@ class RegisterActivity : AppCompatActivity() {
 
         userRegistered()
         showLoading(false)
+        playAnimation()
     }
 
     private fun userRegistered(){
@@ -75,6 +74,34 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    private fun playAnimation(){
+        ObjectAnimator.ofFloat(binding.imageViewRegister, View.TRANSLATION_X, -30f, 30f).apply {
+            duration = 6000
+            repeatCount = ObjectAnimator.INFINITE
+            repeatMode = ObjectAnimator.REVERSE
+        }.start()
+        val title =
+            ObjectAnimator.ofFloat(binding.textView, View.ALPHA, 1f).setDuration(100)
+        val name =
+            ObjectAnimator.ofFloat(binding.textInputLayoutUsername, View.ALPHA, 1f).setDuration(100)
+        val email =
+            ObjectAnimator.ofFloat(binding.textInputLayoutEmail, View.ALPHA, 1f).setDuration(100)
+        val password =
+            ObjectAnimator.ofFloat(binding.textInputLayoutPassword, View.ALPHA, 1f).setDuration(100)
+        val register =
+            ObjectAnimator.ofFloat(binding.buttonForRegister, View.ALPHA, 1f).setDuration(100)
+
+        AnimatorSet().apply {
+            playSequentially(
+                title,
+                name,
+                email,
+                password,
+                register)
+            startDelay = 100
+        }.start()
     }
 
     private fun showLoading(isLoading: Boolean) {
