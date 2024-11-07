@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.sutoriapuri.ui.MainViewModel
+import com.example.sutoriapuri.ui.detail.DetailViewModel
 import com.example.sutoriapuri.ui.home.HomeViewModel
 import com.example.sutoriapuri.ui.login.LoginViewModel
 import com.example.sutoriapuri.ui.register.RegisterViewModel
@@ -28,6 +29,11 @@ class ViewModelFactory(private val storyRepository: StoryRepository):
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
                 HomeViewModel(storyRepository) as T
             }
+
+            modelClass.isAssignableFrom(DetailViewModel::class.java) -> {
+                DetailViewModel(storyRepository) as T
+            }
+
             else -> {
                 throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
             }
