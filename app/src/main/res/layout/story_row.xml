@@ -11,9 +11,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:padding="16dp">
 
-        <!-- Image Section -->
+
         <ImageView
             android:id="@+id/iv_item_photo"
             android:contentDescription="@string/dicoding"
@@ -25,7 +25,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Title Text -->
+
         <TextView
             android:id="@+id/tv_item_name"
             android:layout_width="0dp"
@@ -37,6 +37,19 @@
             app:layout_constraintTop_toBottomOf="@id/iv_item_photo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_item_description"
+            android:layout_width="348dp"
+            android:layout_height="38dp"
+            android:textStyle="bold"
+            android:paddingTop="4dp"
+            android:text="@string/dicoding"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_item_name" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
