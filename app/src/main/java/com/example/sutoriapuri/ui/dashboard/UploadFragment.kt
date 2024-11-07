@@ -5,14 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.sutoriapuri.R
 import com.example.sutoriapuri.data.Result
@@ -25,7 +23,7 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 
-class DashboardFragment : Fragment() {
+class UploadFragment : Fragment() {
 
     private lateinit var binding: FragmentDashboardBinding
     private var currentImage: Uri? = null
@@ -36,11 +34,10 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showLoading(false)
-        setupButton()
         setupUpload()
 
-
         // Keep image while rotating phone
+        @Suppress("DEPRECATION")
         currentImage = savedInstanceState?.getParcelable("currentImage")
         showImage()
 
@@ -97,7 +94,7 @@ class DashboardFragment : Fragment() {
         launcherCamera.launch(currentImage!!)
     }
 
-    private fun setupButton() {
+    private fun setupUpload() {
         binding.btnGallery.setOnClickListener {
             // Galeri
             startGallery()
@@ -108,10 +105,6 @@ class DashboardFragment : Fragment() {
             startCamera()
         }
 
-
-    }
-
-    private fun setupUpload(){
         binding.buttonUpload.setOnClickListener {
             currentImage?.let { uri ->
                 val image = Util.uriToFile(uri, requireContext()).reduceFileImage()
@@ -151,10 +144,8 @@ class DashboardFragment : Fragment() {
             }?: Toast.makeText(requireContext(), "Please select an image first", Toast.LENGTH_SHORT).show()
         }
 
+
     }
-
-
-
 
     private fun showLoading(isLoading: Boolean) {
         binding.pbUpload.visibility = if (isLoading) View.VISIBLE else View.GONE
