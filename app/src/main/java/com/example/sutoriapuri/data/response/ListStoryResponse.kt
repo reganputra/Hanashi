@@ -11,7 +11,11 @@ data class ListStoryResponse(
 	val error: Boolean? = null,
 
 	@field:SerializedName("message")
-	val message: String? = null
+	val message: String? = null,
+
+	@field:SerializedName("story")
+	val story: ListStoryItem? = null
+
 )
 
 data class ListStoryItem(
