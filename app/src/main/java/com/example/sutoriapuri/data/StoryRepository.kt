@@ -113,16 +113,6 @@ class StoryRepository(
             val token = user.token
             if (token.isNotEmpty()) {
                 val response = apiService.getStoriesById("Bearer $token", id)
-//                val story = response.story?: ListStoryItem(
-//                    photoUrl = "",
-//                    createdAt = "",
-//                    name = "",
-//                    description = "",
-//                    lon = 0.0,
-//                    id = "",
-//                    lat = 0.0
-//
-//                )
                 response.story?.let { story ->
                     emit(Result.Success(story))
                 }
