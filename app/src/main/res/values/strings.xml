@@ -14,4 +14,5 @@
     <string name="login_title">Silahkan Login</string>
     <string name="logout_menu">Logout</string>
     <string name="dicoding">Dicoding</string>
+    <string name="judul">Judul</string>
 </resources>
