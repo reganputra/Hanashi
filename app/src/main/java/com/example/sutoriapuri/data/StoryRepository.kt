@@ -65,23 +65,6 @@ class StoryRepository(
         }
     }
 
-//    fun getAllStories(): LiveData<Result<List<ListStoryItem>>> = liveData {
-//        emit(Result.Loading)
-//        try {
-//            Log.d(TAG, "Getting stories...")
-//            val response = apiService.getStories()
-//            val stories = response.listStory
-//            Log.d(TAG, "Successfully retrieved ${stories.size} stories")
-//            emit(Result.Success(stories))
-//
-//        }catch (e: HttpException){
-//            val jsonInString = e.response()?.errorBody()?.string()
-//            val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
-//            val errorMessage = errorBody.message
-//            emit(Result.Error(errorMessage.toString()))
-//        }
-//    }
-
     fun getAllStories(): LiveData<Result<List<ListStoryItem>>> = liveData {
         emit(Result.Loading)
         try {
