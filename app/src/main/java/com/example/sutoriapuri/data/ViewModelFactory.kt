@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.sutoriapuri.ui.MainViewModel
+import com.example.sutoriapuri.ui.dashboard.DashboardViewModel
 import com.example.sutoriapuri.ui.detail.DetailViewModel
 import com.example.sutoriapuri.ui.home.HomeViewModel
 import com.example.sutoriapuri.ui.login.LoginViewModel
@@ -32,6 +33,10 @@ class ViewModelFactory(private val storyRepository: StoryRepository):
 
             modelClass.isAssignableFrom(DetailViewModel::class.java) -> {
                 DetailViewModel(storyRepository) as T
+            }
+
+            modelClass.isAssignableFrom(DashboardViewModel::class.java) -> {
+                DashboardViewModel(storyRepository) as T
             }
 
             else -> {
