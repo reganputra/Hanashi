@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
@@ -18,45 +17,33 @@ val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "se
 class UserPreference private constructor(private val dataStore: DataStore<Preferences>) {
 
     suspend fun saveSession(user: UserModel) {
-        Log.d(TAG, "Saving session - Token before save: ${user.token}")
+        Log.d(TAG, "Saving session - Token before save: ${user.tokenKey}")
         dataStore.edit {
             it[USER_ID] = user.userId
-            it[NAME_KEY] = user.name
-            it[TOKEN_KEY] = user.token
+            it[NAME] = user.name
+            it[TOKEN] = user.tokenKey
         }
         dataStore.data.map { preferences ->
-            preferences[TOKEN_KEY]
+            preferences[TOKEN]
         }
-//            .collect { savedToken ->
-//                Log.d(TAG, "Token after save: $savedToken")
-//            }
     }
 
     fun getSession(): Flow<UserModel> {
         return dataStore.data.map {
             UserModel(
                 it[USER_ID] ?: "",
-                it[NAME_KEY] ?: "",
-                it[TOKEN_KEY] ?: ""
+                it[NAME] ?: "",
+                it[TOKEN] ?: ""
             )
         }
     }
 
-//    Log.d(TAG, "Getting session - User ID: $userId")
-//    Log.d(TAG, "Getting session - Name: $name")
-//    Log.d(TAG, "Getting session - Token: $token")
-//
-//    UserModel(
-//    userId = userId,
-//    name = name,
-//    token = token
-//    )
+
 
     suspend fun logout() {
         dataStore.edit { preferences ->
             preferences.clear()
         }
-        Log.d(TAG, "Session cleared successfully")
     }
 
     companion object {
@@ -65,8 +52,8 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         private var INSTANCE: UserPreference? = null
 
         private val USER_ID = stringPreferencesKey("userId")
-        private val NAME_KEY = stringPreferencesKey("name")
-        private val TOKEN_KEY = stringPreferencesKey("token")
+        private val NAME = stringPreferencesKey("name")
+        private val TOKEN = stringPreferencesKey("token")
 
 
         fun getInstance(dataStore: DataStore<Preferences>): UserPreference {
