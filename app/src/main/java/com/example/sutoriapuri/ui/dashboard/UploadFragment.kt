@@ -27,7 +27,7 @@ class UploadFragment : Fragment() {
 
     private lateinit var binding: FragmentDashboardBinding
     private var currentImage: Uri? = null
-    private val uploadViewModel: DashboardViewModel by viewModels{
+    private val uploadViewModel: UploadViewModel by viewModels{
         ViewModelFactory.getInstance(requireContext())
     }
 
@@ -38,7 +38,7 @@ class UploadFragment : Fragment() {
 
         // Keep image while rotating phone
         @Suppress("DEPRECATION")
-        currentImage = savedInstanceState?.getParcelable("currentImage")
+        currentImage = savedInstanceState?.getParcelable(IMG)
         showImage()
 
     }
@@ -55,7 +55,7 @@ class UploadFragment : Fragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putParcelable("currentImage", currentImage)
+        outState.putParcelable(IMG, currentImage)
     }
 
     private fun startGallery() {
@@ -96,16 +96,14 @@ class UploadFragment : Fragment() {
 
     private fun setupUpload() {
         binding.btnGallery.setOnClickListener {
-            // Galeri
             startGallery()
         }
 
         binding.btnCamera.setOnClickListener{
-            // Camera
             startCamera()
         }
 
-        binding.buttonUpload.setOnClickListener {
+        binding.buttonAdd.setOnClickListener {
             currentImage?.let { uri ->
                 val image = Util.uriToFile(uri, requireContext()).reduceFileImage()
                 val requestImageFile = image.asRequestBody("image/jpeg".toMediaType())
@@ -149,5 +147,9 @@ class UploadFragment : Fragment() {
 
     private fun showLoading(isLoading: Boolean) {
         binding.pbUpload.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    companion object{
+        private const val IMG = "currentImage"
     }
 }
