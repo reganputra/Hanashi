@@ -6,7 +6,7 @@ import com.example.sutoriapuri.data.StoryRepository
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 
-class DashboardViewModel(private val storyRepository: StoryRepository) : ViewModel() {
+class UploadViewModel(private val storyRepository: StoryRepository) : ViewModel() {
     fun uploadStory(
         file: MultipartBody.Part,
         description: RequestBody) = storyRepository.uploadStory(file, description)
