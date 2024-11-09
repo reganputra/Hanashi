@@ -48,7 +48,7 @@ class StoryRepository(
                     val user = UserModel(
                         userId = loginResult.userId ?: "",
                         name = loginResult.name ?: "",
-                        token = loginResult.token ?: ""
+                        tokenKey = loginResult.token ?: ""
 
                     )
                     userPref.saveSession(user)
@@ -67,11 +67,9 @@ class StoryRepository(
     fun getAllStories(): LiveData<Result<List<ListStoryItem>>> = liveData {
         emit(Result.Loading)
         try {
-            // Ambil token dari UserPreference
             val user = userPref.getSession().first()
-            val token = user.token
+            val token = user.tokenKey
             if (token.isNotEmpty()) {
-                // Kirim permintaan API dengan token
                 val response = apiService.getStories("Bearer $token")
                 val stories = response.listStory
                 emit(Result.Success(stories))
@@ -91,7 +89,7 @@ class StoryRepository(
         emit(Result.Loading)
         try {
             val user = userPref.getSession().first()
-            val token = user.token
+            val token = user.tokenKey
             if (token.isNotEmpty()) {
                 val response = apiService.getStoriesById("Bearer $token", id)
                 response.story?.let { story ->
@@ -113,7 +111,7 @@ class StoryRepository(
         emit(Result.Loading)
         try {
             val user = userPref.getSession().first()
-            val token = user.token
+            val token = user.tokenKey
             if (token.isNotEmpty()){
                 val response = apiService.uploadStory(file, description, "Bearer $token")
                 emit(Result.Success(response))
