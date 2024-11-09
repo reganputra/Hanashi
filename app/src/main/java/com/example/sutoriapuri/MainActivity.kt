@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = binding.navView
 
         mainViewModel.getSession().observe(this){
-            if (it.token.isEmpty()){
+            if (it.tokenKey.isEmpty()){
                 startActivity(Intent(this, WelcomeActivity::class.java))
                 finish()
             }
