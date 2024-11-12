@@ -67,4 +67,8 @@ dependencies {
 
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.glide)
+
+    // Paging
+    implementation(libs.androidx.paging.runtime.ktx)
+    implementation(libs.androidx.paging.runtime)
 }
