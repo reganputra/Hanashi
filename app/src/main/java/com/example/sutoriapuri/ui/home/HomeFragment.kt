@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sutoriapuri.data.Result
 import com.example.sutoriapuri.data.ViewModelFactory
@@ -39,17 +41,14 @@ class HomeFragment : Fragment() {
     }
 
     private fun displayStories(){
-        homeViewModel.getStories().observe(viewLifecycleOwner){result ->
-            when(result){
-                is Result.Loading -> showLoading(true)
-
-                is Result.Success -> {
-                    showLoading(false)
-                    storyAdapter.submitList(result.data)
-                }
-                is Result.Error -> {
-                    showLoading(false)
-                }
+        homeViewModel.getStoriesPaging().observe(viewLifecycleOwner){result ->
+            storyAdapter.submitData(lifecycle, result)
+        }
+        storyAdapter.addLoadStateListener { loadState ->
+            when(loadState.source.refresh){
+                is LoadState.Loading -> showLoading(true)
+                is LoadState.NotLoading -> showLoading(false)
+                is LoadState.Error ->  showLoading(false)
             }
 
         }

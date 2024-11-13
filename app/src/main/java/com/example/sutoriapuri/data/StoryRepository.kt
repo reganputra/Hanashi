@@ -3,6 +3,10 @@ package com.example.sutoriapuri.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.liveData
 import com.example.sutoriapuri.data.api.ApiService
 import com.example.sutoriapuri.data.model.UserModel
 import com.example.sutoriapuri.data.response.ErrorResponse
@@ -125,6 +129,34 @@ class StoryRepository(
 
     }
 
+    fun storiesPaging(): LiveData<PagingData<ListStoryItem>>{
+        return Pager(
+            config = PagingConfig(
+                pageSize = 20
+            ),
+            pagingSourceFactory = {
+                StoryPagingSource(apiService, userPref)
+            }
+        ).liveData
+    }
+
+//    fun getStoriesWithLocation(): LiveData<Result<List<ListStoryItem>>> = liveData {
+//        emit(Result.Loading)
+//        try {
+//            val user = userPref.getSession().first()
+//            val token = user.tokenKey
+//            if (token.isNotEmpty()) {
+//                val response = apiService.getStoriesWithLocation("Bearer $token", location = 1)
+//                val stories = response.listStory
+//                emit(Result.Success(stories))
+//            }
+//        } catch (e: HttpException){
+//            val jsonInString = e.response()?.errorBody()?.string()
+//            val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
+//            val errorMessage = errorBody.message
+//            emit(Result.Error(errorMessage.toString()))
+//        }
+//    }
 
     fun getSession(): Flow<UserModel> {
         return userPref.getSession()

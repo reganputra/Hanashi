@@ -10,11 +10,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import androidx.core.util.Pair
+import androidx.paging.PagingDataAdapter
 import com.example.sutoriapuri.data.response.ListStoryItem
 import com.example.sutoriapuri.databinding.StoryRowBinding
 import com.example.sutoriapuri.ui.detail.DetailActivity
 
-class StoriesAdapter: ListAdapter<ListStoryItem, StoriesAdapter.ViewHolder>(DIFF_CALLBACK) {
+class StoriesAdapter: PagingDataAdapter<ListStoryItem, StoriesAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = StoryRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -23,7 +24,9 @@ class StoriesAdapter: ListAdapter<ListStoryItem, StoriesAdapter.ViewHolder>(DIFF
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item)
+        if (item != null) {
+            holder.bind(item)
+        }
     }
 
     class ViewHolder(private val view: StoryRowBinding): RecyclerView.ViewHolder(view.root) {
