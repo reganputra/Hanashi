@@ -21,7 +21,7 @@ class MapsFragment : Fragment() {
 
     private  var _binding: FragmentMapsBinding? = null
     private val binding get() = _binding!!
-    private val mapViewModel: MapViewModel by viewModels<MapViewModel>{
+    private val mapViewModel: MapViewModel by viewModels{
         ViewModelFactory.getInstance(requireContext())
     }
 
