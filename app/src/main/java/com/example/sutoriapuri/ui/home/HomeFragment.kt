@@ -4,12 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.sutoriapuri.data.Result
 import com.example.sutoriapuri.data.ViewModelFactory
 import com.example.sutoriapuri.databinding.FragmentHomeBinding
 import com.example.sutoriapuri.ui.adapter.StoriesAdapter
@@ -48,7 +46,7 @@ class HomeFragment : Fragment() {
             when(loadState.source.refresh){
                 is LoadState.Loading -> showLoading(true)
                 is LoadState.NotLoading -> showLoading(false)
-                is LoadState.Error ->  showLoading(false)
+                is LoadState.Error -> showLoading(false)
             }
 
         }
