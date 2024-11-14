@@ -16,5 +16,10 @@
         android:name="com.example.sutoriapuri.ui.dashboard.UploadFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
+    <fragment
+        android:id="@+id/navigation_maps"
+        android:name="com.example.sutoriapuri.ui.map.MapsFragment"
+        android:label="@string/map"
+        tools:layout="@layout/fragment_maps" />
 
 </navigation>

@@ -11,4 +11,9 @@
         android:icon="@drawable/upload_ic"
         android:title="@string/upload" />
 
+    <item
+        android:id="@+id/navigation_maps"
+        android:icon="@drawable/ic_map"
+        android:title="@string/map"/>
+
 </menu>

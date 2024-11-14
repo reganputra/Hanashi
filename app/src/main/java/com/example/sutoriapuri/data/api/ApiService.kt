@@ -54,10 +54,10 @@ interface ApiService {
         @Header("Authorization") token: String
     ): UploadStoryResponse
 
-//    @GET("stories")
-//    suspend fun getStoriesWithLocation(
-//        @Header("Authorization")token: String,
-//        @Query("location") location : Int = 1,
-//    ) : ListStoryResponse
+    @GET("stories")
+    suspend fun getStoriesWithLocation(
+        @Header("Authorization")token: String,
+        @Query("location") location : Int = 1,
+    ) : ListStoryResponse
 
 }

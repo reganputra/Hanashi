@@ -8,7 +8,8 @@ import com.example.sutoriapuri.ui.dashboard.UploadViewModel
 import com.example.sutoriapuri.ui.detail.DetailViewModel
 import com.example.sutoriapuri.ui.home.HomeViewModel
 import com.example.sutoriapuri.ui.login.LoginViewModel
-import com.example.sutoriapuri.ui.maps.MapsViewModel
+import com.example.sutoriapuri.ui.map.MapViewModel
+
 import com.example.sutoriapuri.ui.register.RegisterViewModel
 
 class ViewModelFactory(private val storyRepository: StoryRepository):
@@ -40,9 +41,9 @@ class ViewModelFactory(private val storyRepository: StoryRepository):
                 UploadViewModel(storyRepository) as T
             }
 
-//            modelClass.isAssignableFrom(MapsViewModel::class.java) -> {
-//                MapsViewModel(storyRepository) as T
-//            }
+            modelClass.isAssignableFrom(MapViewModel::class.java) -> {
+                MapViewModel(storyRepository) as T
+            }
 
             else -> {
                 throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)

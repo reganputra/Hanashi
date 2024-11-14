@@ -20,4 +20,5 @@
     <string name="camera">Camera</string>
     <string name="gambar">Gambar</string>
     <string name="upload">Upload</string>
+    <string name="map">Map</string>
 </resources>
