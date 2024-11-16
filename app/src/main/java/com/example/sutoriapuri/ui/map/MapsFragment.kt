@@ -66,11 +66,11 @@ class MapsFragment : Fragment() {
         mapFragment?.getMapAsync(callback)
         showLoading(false)
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 
     private fun showLoading(isLoading: Boolean) {
         binding.pbMap.visibility = if (isLoading) View.VISIBLE else View.GONE
