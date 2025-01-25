@@ -16,7 +16,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "API_KEY", "${project.findProperty("API_KEY")}")
+//        buildConfigField("String", "API_KEY", "${project.findProperty("API_KEY")}")
     }
 
     buildTypes {
@@ -39,7 +39,11 @@ android {
         viewBinding = true
         buildConfig = true
     }
-}
+    tasks.withType<Test> {
+        jvmArgs("-XX:+EnableDynamicAgentLoading")
+        jvmArgs("-Dnet.bytebuddy.experimental=true")
+        }
+    }
 
 dependencies {
 
@@ -83,4 +87,5 @@ dependencies {
     testImplementation(libs.mockito.core)
     testImplementation(libs.mockito.inline)
     testImplementation(libs.mockk)
+    testImplementation (libs.byte.buddy.agent)
 }
