@@ -67,7 +67,7 @@ class LoginActivity : AppCompatActivity() {
                                 showLoading(false)
                                 Toast.makeText(this, "Login Gagal: ${result.error}", Toast.LENGTH_SHORT).show()
                             }
-                        }
+                        } //
                     }
                 }
             }

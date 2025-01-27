@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">Sutoriapuri</string>
+    <string name="app_name">Hanashi</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <string name="welcome_title">Sutoriapuri</string>
+    <string name="welcome_title">Hanashi</string>
     <string name="welcome_desc">Aplikasi untuk kalian bercerita</string>
     <string name="login">Login</string>
     <string name="register">Register</string>

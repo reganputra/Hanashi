@@ -68,26 +68,26 @@ class StoryRepository(
         }
     }
 
-    fun getAllStories(): LiveData<Result<List<ListStoryItem>>> = liveData {
-        emit(Result.Loading)
-        try {
-            val user = userPref.getSession().first()
-            val token = user.tokenKey
-            if (token.isNotEmpty()) {
-                val response = apiService.getStories("Bearer $token")
-                val stories = response.listStory
-                emit(Result.Success(stories))
-            } else {
-                emit(Result.Error("Token is missing"))
-            }
-
-        } catch (e: HttpException) {
-            val jsonInString = e.response()?.errorBody()?.string()
-            val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
-            val errorMessage = errorBody.message
-            emit(Result.Error(errorMessage.toString()))
-        }
-    }
+//    fun getAllStories(): LiveData<Result<List<ListStoryItem>>> = liveData {
+//        emit(Result.Loading)
+//        try {
+//            val user = userPref.getSession().first()
+//            val token = user.tokenKey
+//            if (token.isNotEmpty()) {
+//                val response = apiService.getStories("Bearer $token")
+//                val stories = response.listStory
+//                emit(Result.Success(stories))
+//            } else {
+//                emit(Result.Error("Token is missing"))
+//            }
+//
+//        } catch (e: HttpException) {
+//            val jsonInString = e.response()?.errorBody()?.string()
+//            val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
+//            val errorMessage = errorBody.message
+//            emit(Result.Error(errorMessage.toString()))
+//        }
+//    }
 
     fun getStoryById(id: String): LiveData<Result<ListStoryItem>> = liveData {
         emit(Result.Loading)
